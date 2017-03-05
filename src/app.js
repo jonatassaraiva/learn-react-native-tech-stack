@@ -1,27 +1,26 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import firebase from 'firebase';
-import { firebaseSetting } from '../setting';
 
-import { Header, Spinner } from './component/common';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from './reducers';
+
+import { Header } from './component/common';
+import LibraryList from './component/library-list';
 
 class App extends Component {
   constructor(props) {
     super(props);
-
-    this.state = { loggedIn: null };
-  }
-
-  componentWillMount() {
-    firebase.initializeApp(firebaseSetting);
   }
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <Header text="Tech Stack" />
-        <Spinner size="large" />
-      </View>
+      <Provider store={createStore(reducers)}>
+        <View style={{ flex: 1 }}>
+          <Header text="Tech Stack" />
+          <LibraryList />
+        </View>
+      </Provider>
     );
   }
 }

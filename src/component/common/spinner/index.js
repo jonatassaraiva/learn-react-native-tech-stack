@@ -10,7 +10,7 @@ const Spinner = ({ size }) => {
 };
 
 Spinner.propTypes = {
-  size: React.PropTypes.string.isRequired
+  size: React.PropTypes.string
 };
 
 

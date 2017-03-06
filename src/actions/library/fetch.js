@@ -7,7 +7,9 @@ export const fetchLibraresTypes = {
 
 export const fetchLibrares = () => (dispatch) => {
   dispatch(request());
-  return dispatch(receive(localData));
+  setTimeout(function() {
+    return dispatch(receive(localData));
+  }, 2000);
 };
 
 const request = () => ({

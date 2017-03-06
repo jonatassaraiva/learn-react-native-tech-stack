@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
-import * as libraryActions from '../../actions/library';
+import { fetchLibrares, selectLibrary } from '../../actions/library';
 
+import { Spinner } from '../common';
 import List from './list';
 
 class LibraryList extends Component {
@@ -11,6 +12,10 @@ class LibraryList extends Component {
   }
 
   render() {
+
+    if(this.props.isFetching)
+      return <Spinner />;
+
     return (
       <List 
         items={this.props.libraries} 
@@ -21,10 +26,17 @@ class LibraryList extends Component {
 }
 
 const mapStateToProps = state => {
+  const {items, isFetching} = state.libraries.fetch;
+
   return { 
-    libraries: state.libraries.fetch.items,
+    libraries: items,
+    isFetching,
     idLibraryExpand: state.libraries.select.id
   };
+};
+
+const libraryActions = {
+  fetchLibrares, selectLibrary
 };
 
 export default connect(mapStateToProps, libraryActions)(LibraryList);

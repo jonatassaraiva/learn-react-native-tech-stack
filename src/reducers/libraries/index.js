@@ -1,3 +1,9 @@
-import data from './data.json';
+import { combineReducers } from 'redux';
 
-export default () => data;
+import fetch from './fetch';
+import select from './select';
+
+export default combineReducers({
+  fetch: fetch,
+  select: select
+});

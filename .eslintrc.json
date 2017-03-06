@@ -48,8 +48,7 @@
     "babel/generator-star-spacing": "warn",
     "babel/object-shorthand": "warn",
     "babel/no-await-in-loop": "warn",
-
-    "react/jsx-closing-bracket-location": "warn",
+    
     "react/jsx-curly-spacing": "warn",
     "react/jsx-max-props-per-line": ["warn", {"maximum": 3}],
     "react/jsx-no-duplicate-props": "warn",
@@ -59,7 +58,6 @@
     "react/jsx-wrap-multilines": "warn",
 
     "react/no-direct-mutation-state": "warn",
-    "react/prop-types": "error",
     "react/react-in-jsx-scope": "error",
     "react/self-closing-comp": "warn",
     "react/sort-comp": "warn"

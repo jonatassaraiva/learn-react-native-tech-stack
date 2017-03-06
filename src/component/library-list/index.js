@@ -1,34 +1,30 @@
 import React, { Component } from 'react';
-import { ListView } from 'react-native';
+
 import { connect } from 'react-redux';
-import Item from './item';
+import * as libraryActions from '../../actions/library';
+
+import List from './list';
 
 class LibraryList extends Component {
   componentWillMount() {
-    const dataSource = new ListView.DataSource({
-      rowHasChanged: (row1, row2) => row1 !== row2
-    });
-
-    this.dataSource = dataSource.cloneWithRows(this.props.libraries);
-  }
-
-  renderRow(library) {
-    return <Item library={library} />;
+    this.props.fetchLibrares();
   }
 
   render() {
     return (
-      <ListView dataSource={this.dataSource} renderRow={this.renderRow} />
+      <List 
+        items={this.props.libraries} 
+        idItemExpand={this.props.idLibraryExpand}
+        onPressItem={this.props.selectLibrary} />
     );
   }
 }
 
-LibraryList.propTypes = {
-  libraries: React.PropTypes.array.isRequired
-};
-
 const mapStateToProps = state => {
-  return { libraries: state.libraries };
+  return { 
+    libraries: state.libraries.fetch.items,
+    idLibraryExpand: state.libraries.select.id
+  };
 };
 
-export default connect(mapStateToProps)(LibraryList);
+export default connect(mapStateToProps, libraryActions)(LibraryList);

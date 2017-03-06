@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Text, TouchableWithoutFeedback, View, LayoutAnimation } from 'react-native';
-import { connect } from 'react-redux';
 import { Section } from '../common';
 
 class Item extends Component {
@@ -35,8 +34,10 @@ class Item extends Component {
   }
 
   render() {
+    const { id } = this.props.library;
+
     return (
-      <TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={() => this.props.onPressItem(id)}>
         <View>
           {this.renderTitle()}
           {this.renderDescription()}
@@ -48,13 +49,14 @@ class Item extends Component {
 
 Item.propTypes = {
   library: React.PropTypes.object.isRequired,
-  expanded: React.PropTypes.bool
+  expanded: React.PropTypes.bool,
+  onPressItem: React.PropTypes.func
 };
 
 const styles = {
   title: {
     fontSize: 18,
-    paddingLeft: 15
+    paddingLeft: 15,
   },
   descriptionStyle: {
     paddingLeft: 10,
@@ -62,10 +64,4 @@ const styles = {
   }
 };
 
-const mapStateToProps = (state, ownProps) => {
-  const expanded = state.selectedLibraryId === ownProps.library.id;
-
-  return { expanded };
-};
-
-export default connect(mapStateToProps)(Item);
+export default Item;

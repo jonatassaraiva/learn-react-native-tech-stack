@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TouchableWithoutFeedback, View, LayoutAnimation } from 'react-native';
+import { Text, TouchableOpacity, View, LayoutAnimation } from 'react-native';
 import { Section } from '../common';
 
 class Item extends Component {
@@ -37,12 +37,12 @@ class Item extends Component {
     const { id } = this.props.library;
 
     return (
-      <TouchableWithoutFeedback onPress={() => this.props.onPressItem(id)}>
+      <TouchableOpacity onPress={() => this.props.onPressItem(id)}>
         <View>
           {this.renderTitle()}
           {this.renderDescription()}
         </View>
-      </TouchableWithoutFeedback>
+      </TouchableOpacity>
     );
   }
 }
